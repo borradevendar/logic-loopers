@@ -6,20 +6,22 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     # Render the form for capturing stock ticker and date range
-    return render_template('./index.html')
+    return render_template('index.html')
 
 @app.route('/fetch_data', methods=['POST'])
 def fetch_data():
     # Get input data from the form
-    ticker = ["AAPL"]
+    ticker = ["AAPL", "MSFT", "AMZN", "NVDA", "META","^NDX"]
     start_date = "2018-12-31"
     end_date = "2023-12-31"
     benchmark = "^NDX"
     
     try:
+        # Fetch historical data for the given ticker and benchmark
         stock_data = yf.download(ticker, start=start_date, end=end_date, interval="1mo")['Adj Close']
         benchmark_data = yf.download(benchmark, start=start_date, end=end_date, interval="1mo")['Adj Close']
         
+        # Prepare the response
         data = {
             "stock_data": stock_data.to_dict(),
             "benchmark_data": benchmark_data.to_dict()
