@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 
 # Define the stock tickers and date range
-tickers = ["AAPL", "MSFT", "AMZN", "NVDA", "META"]
+tickers = ["AAPL", "MSFT", "AMZN", "NVDA", "META","^NDX"]
 start_date = "2018-12-31"
 end_date = "2023-12-31"
 
